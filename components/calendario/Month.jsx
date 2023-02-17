@@ -1,23 +1,37 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import meses from "@/lib/meses";
 import DefaultMonth from "@/components/calendario/common/DefaultMonth";
+import Day from "@/components/calendario/Day";
 
 const Month = () => {
+    const realMonth = new Date().getMonth();
+    const realDay = new Date().getDate();
+    console.log("M", realMonth, "D", realDay);
     let [_currentMonthNum, _setCurrentMonthNum] = useState(new Date().getMonth());
     let [_currentMont, _setCurrentMonth] = useState(meses[_currentMonthNum]);
 
 
-    return <div className="w-full h-full flex items-center flex">
-        <div className="border border-red-500 cursor-pointer p-2" onClick={() => {
-            console.log("prev", _currentMont)
+    return <div className="w-full h-full flex items-center flex ">
+        <div className="w-12 flex justify-center items-center cursor-pointer p-2"
+             onClick={() => {
+
             if(_currentMonthNum - 1 >= 0) {
                 _setCurrentMonth(meses[_currentMonthNum - 1]);
                 _setCurrentMonthNum(_currentMonthNum - 1);
+            }else {
+                _setCurrentMonth(meses["11"]);
+                _setCurrentMonthNum(11);
             }
 
-        }}>previous</div>
+        }}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                 strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+
+        </div>
         <div className="w-full flex flex-col justify-center items-center">
             <div><strong className="text-2xl">{_currentMont.name}</strong></div>
             <div className="w-full flex">
@@ -48,26 +62,34 @@ const Month = () => {
                     return <div key={weekIndex} className="w-full flex">
                         {
                             week.map((day, dayIndex) => {
-                                return <div key={dayIndex}
-                                className={`w-2/12 h-28 p-2 flex flex-col border border-gray-400 
-                                    ${day?.other_month ? "other_month bg-gray-100 opacity-30" : ""}
-                                `}>
-                                    <div>{day.num}</div>
-                                </div>
+
+                                return  <Day
+                                    key={dayIndex}
+                                    day={day}
+                                    isToday={_currentMonthNum === realMonth && day.num === realDay}
+                                    month={_currentMont}
+                                />
                             })
                         }
                     </div>
                 }) : <DefaultMonth />
             }
         </div>
-        <div className="border border-cyan-300 cursor-pointer p-2" onClick={() => {
-            console.log("curr", _currentMonthNum);
+        <div className="w-12 flex justify-center items-center cursor-pointer p-2" onClick={() => {
             if(_currentMonthNum + 1 <= 11) {
                 _setCurrentMonth(meses[_currentMonthNum + 1]);
                 _setCurrentMonthNum(_currentMonthNum + 1);
+            }else {
+                _setCurrentMonth(meses[0]);
+                _setCurrentMonthNum(0);
             }
 
-        }}>next</div>
+        }}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                 strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 ">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+        </div>
 
     </div>
 };

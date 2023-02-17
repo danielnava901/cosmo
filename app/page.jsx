@@ -1,10 +1,10 @@
-import styles from './page.module.css'
-
+import './globals.css';
+import Month from "@/components/calendario/Month";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      main
+    <main >
+      <Month />
     </main>
   )
 }
