@@ -34,26 +34,26 @@ const Month = () => {
         </div>
         <div className="w-full flex flex-col justify-center items-center">
             <div><strong className="text-2xl">{_currentMont.name}</strong></div>
-            <div className="w-full flex">
-                <div className={`w-2/12 p-2 flex flex-col border border-gray-200`}>
+            <div className="w-full flex text-xs md:text-lg">
+                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
                     <strong>Domingo</strong>
                 </div>
-                <div className={`w-2/12 p-2 flex flex-col border border-gray-200`}>
+                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
                     <strong>Lunes</strong>
                 </div>
-                <div className={`w-2/12 p-2 flex flex-col border border-gray-200`}>
+                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
                     <strong>Martes</strong>
                 </div>
-                <div className={`w-2/12 p-2 flex flex-col border border-gray-200`}>
+                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
                     <strong>Miércoles</strong>
                 </div>
-                <div className={`w-2/12 p-2 flex flex-col border border-gray-200`}>
+                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
                     <strong>Jueves</strong>
                 </div>
-                <div className={`w-2/12 p-2 flex flex-col border border-gray-200`}>
+                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
                     <strong>Viernes</strong>
                 </div>
-                <div className={`w-2/12 p-2 flex flex-col border border-gray-200`}>
+                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
                     <strong>Sábado</strong>
                 </div>
             </div>
