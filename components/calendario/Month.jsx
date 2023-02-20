@@ -62,7 +62,7 @@ const Month = () => {
                     return <div key={weekIndex} className="w-full flex">
                         {
                             week.map((day, dayIndex) => {
-
+                                console.log("isToday", _currentMonthNum, realMonth, day.num, realDay);
                                 return  <Day
                                     key={dayIndex}
                                     day={day}
