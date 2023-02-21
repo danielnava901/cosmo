@@ -6,9 +6,8 @@ import DefaultMonth from "@/components/calendario/common/DefaultMonth";
 import Day from "@/components/calendario/Day";
 
 const Month = () => {
-    const realMonth = new Date().getMonth();
-    const realDay = new Date().getDate();
-    console.log("M", realMonth, "D", realDay);
+    let [realMonth] = useState(new Date().getMonth());
+    let [realDay] = useState(new Date().getDate());
     let [_currentMonthNum, _setCurrentMonthNum] = useState(new Date().getMonth());
     let [_currentMont, _setCurrentMonth] = useState(meses[_currentMonthNum]);
 
@@ -62,7 +61,7 @@ const Month = () => {
                     return <div key={weekIndex} className="w-full flex">
                         {
                             week.map((day, dayIndex) => {
-                                console.log("isToday", _currentMonthNum, realMonth, day.num, realDay);
+
                                 return  <Day
                                     key={dayIndex}
                                     day={day}
