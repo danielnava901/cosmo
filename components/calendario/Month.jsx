@@ -1,18 +1,25 @@
 'use client';
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import meses from "@/lib/meses";
 import DefaultMonth from "@/components/calendario/common/DefaultMonth";
 import Day from "@/components/calendario/Day";
+import DayModal from "@/components/calendario/common/DayModal";
 
 const Month = () => {
     let [realMonth] = useState(new Date().getMonth());
     let [realDay] = useState(new Date().getDate());
     let [_currentMonthNum, _setCurrentMonthNum] = useState(new Date().getMonth());
     let [_currentMont, _setCurrentMonth] = useState(meses[_currentMonthNum]);
+    let [_selectedDay, _setSelectedDay] = useState(null);
+    let [showDayModal, setShowDayModal] = useState(null);
 
 
-    return <div className="w-full h-full flex items-center flex ">
+    useEffect(() => {
+        setShowDayModal(!!_selectedDay)
+    }, [_selectedDay])
+
+    return <div className="w-full h-full flex items-center flex relative">
         <div className="w-12 flex justify-center items-center cursor-pointer p-2"
              onClick={() => {
 
@@ -67,12 +74,20 @@ const Month = () => {
                                     day={day}
                                     isToday={_currentMonthNum === realMonth && day.num === realDay}
                                     month={_currentMont}
+                                    onClick={(innerDay)=>{
+                                        _setSelectedDay(innerDay)
+                                    }}
                                 />
                             })
                         }
                     </div>
                 }) : <DefaultMonth />
             }
+            <DayModal day={_selectedDay}
+                      month={_currentMont}
+                      show={showDayModal} onClose={() =>{
+                _setSelectedDay(null);
+            }} />
         </div>
         <div className="w-12 flex justify-center items-center cursor-pointer p-2" onClick={() => {
             if(_currentMonthNum + 1 <= 11) {
