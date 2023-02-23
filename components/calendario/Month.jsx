@@ -19,7 +19,7 @@ const Month = () => {
         setShowDayModal(!!_selectedDay)
     }, [_selectedDay])
 
-    return <div className="w-full h-full flex items-center flex relative">
+    return <div className="w-full h-full flex items-center flex relative" >
         <div className="w-12 flex justify-center items-center cursor-pointer p-2"
              onClick={() => {
 
@@ -40,9 +40,9 @@ const Month = () => {
         </div>
         <div className="w-full flex flex-col justify-center items-center">
             <div><strong className="text-2xl">{_currentMont.name}</strong></div>
-            <table className="table-fixed w-full">
+            <table className="table-fixed w-full" >
                 <thead>
-                <tr>
+                <tr className="text-xs lg:text-lg">
                     <th className={``}>
                         <strong>Domingo</strong>
                     </th>
@@ -66,7 +66,9 @@ const Month = () => {
                     </th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody style={{
+                    backgroundColor: _currentMont.main_color
+                }}>
                 {
                     _currentMont["days"] ? _currentMont.days.map((week, weekIndex) => {
                         return <tr key={weekIndex} style={{height: "100px"}}>
@@ -77,9 +79,12 @@ const Month = () => {
                                                 className={`
                                                 border border-slate-300
                                                 ${_currentMonthNum === realMonth && day.num === realDay ? 
-                                                    "bg-gray-200" : ""}
-                                                    
-                                                `}>
+                                                    "bg-gray-200" : ""}`}
+                                        style={{
+                                            backgroundColor: day.other_month ?
+                                                    "rgba(127,127,127,0.2)" : _currentMont.main_color
+                                    }}
+                                    >
                                         <Day
                                             key={dayIndex}
                                             day={day}

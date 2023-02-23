@@ -16,7 +16,7 @@ const DayModal = ({show, day, month, onClose = () => {}}) => {
             <div className="absolute bg-white shadow flex flex-col w-1/2" style={{margin: "20px auto"}}>
                 <div className="rounded-tl-lg rounded-tr-lg
                     flex  items-center p-2 text-sm p-6 bg-teal-500">
-                    <span className="text-2xl text-white mr-4">
+                    <span className="text-white mr-4" style={{fontSize: "3.5rem"}}>
                         {day.num}
                     </span>
                     <span className="text-xl text-white uppercase" >{month ? month.name : ""}</span>
