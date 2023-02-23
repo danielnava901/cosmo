@@ -40,49 +40,64 @@ const Month = () => {
         </div>
         <div className="w-full flex flex-col justify-center items-center">
             <div><strong className="text-2xl">{_currentMont.name}</strong></div>
-            <div className="w-full flex text-xs md:text-lg">
-                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
-                    <strong>Domingo</strong>
-                </div>
-                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
-                    <strong>Lunes</strong>
-                </div>
-                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
-                    <strong>Martes</strong>
-                </div>
-                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
-                    <strong>Miércoles</strong>
-                </div>
-                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
-                    <strong>Jueves</strong>
-                </div>
-                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
-                    <strong>Viernes</strong>
-                </div>
-                <div className={`w-2/12 h-fit p-0.5 md:p-2 flex flex-col border border-gray-200`}>
-                    <strong>Sábado</strong>
-                </div>
-            </div>
-            {
-                _currentMont["days"] ? _currentMont.days.map((week, weekIndex) => {
-                    return <div key={weekIndex} className="w-full flex">
-                        {
-                            week.map((day, dayIndex) => {
+            <table className="table-fixed w-full">
+                <thead>
+                <tr>
+                    <th className={``}>
+                        <strong>Domingo</strong>
+                    </th>
+                    <th className={``}>
+                        <strong>Lunes</strong>
+                    </th>
+                    <th className={``}>
+                        <strong>Martes</strong>
+                    </th>
+                    <th className={``}>
+                        <strong>Miércoles</strong>
+                    </th>
+                    <th className={``}>
+                        <strong>Jueves</strong>
+                    </th>
+                    <th className={``}>
+                        <strong>Viernes</strong>
+                    </th>
+                    <th className={``}>
+                        <strong>Sábado</strong>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    _currentMont["days"] ? _currentMont.days.map((week, weekIndex) => {
+                        return <tr key={weekIndex} style={{height: "100px"}}>
+                            {
+                                week.map((day, dayIndex) => {
 
-                                return  <Day
-                                    key={dayIndex}
-                                    day={day}
-                                    isToday={_currentMonthNum === realMonth && day.num === realDay}
-                                    month={_currentMont}
-                                    onClick={(innerDay)=>{
-                                        _setSelectedDay(innerDay)
-                                    }}
-                                />
-                            })
-                        }
-                    </div>
-                }) : <DefaultMonth />
-            }
+                                    return  <td key={dayIndex}
+                                                className={`
+                                                border border-slate-300
+                                                ${_currentMonthNum === realMonth && day.num === realDay ? 
+                                                    "bg-gray-200" : ""}
+                                                    
+                                                `}>
+                                        <Day
+                                            key={dayIndex}
+                                            day={day}
+                                            isToday={_currentMonthNum === realMonth && day.num === realDay}
+                                            month={_currentMont}
+                                            onClick={(innerDay)=>{
+                                                _setSelectedDay(innerDay)
+                                            }}
+                                        />
+                                    </td>
+                                })
+                            }
+                        </tr>
+                    }) : <DefaultMonth />
+                }
+                </tbody>
+            </table>
+
             <DayModal day={_selectedDay}
                       month={_currentMont}
                       show={showDayModal} onClose={() =>{

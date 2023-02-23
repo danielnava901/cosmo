@@ -10,10 +10,9 @@ const Day = ({day, month, isToday, onClick}) => {
     }, [isToday]);
 
 
-    return <div className={`w-2/12 h-14 md:h-28 p-2 flex flex-col text-xs md:text-lg
-        border flex flex-col ${isToday ? "bg-gray-200" : ''}`}
+    return <div className={`p-2 flex flex-col text-xs md:text-lg
+        flex flex-col `}
         style={{
-            borderColor: `${day?.other_month ? 'gray' : month.main_color}`,
             opacity: `${day?.other_month ? '0.2' : '1'}`,
         }}
         onClick={() => {
