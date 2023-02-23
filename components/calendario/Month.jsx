@@ -76,13 +76,10 @@ const Month = () => {
                                 week.map((day, dayIndex) => {
 
                                     return  <td key={dayIndex}
-                                                className={`
-                                                border border-slate-300
-                                                ${_currentMonthNum === realMonth && day.num === realDay ? 
-                                                    "bg-gray-200" : ""}`}
                                         style={{
                                             backgroundColor: day.other_month ?
-                                                    "rgba(127,127,127,0.2)" : _currentMont.main_color
+                                                    "rgba(127,127,127,0.2)" : _currentMont.main_color,
+                                            opacity: (_currentMonthNum === realMonth && day.num === realDay) ? "0.25" : 1
                                     }}
                                     >
                                         <Day
